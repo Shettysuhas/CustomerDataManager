@@ -16,7 +16,7 @@ public class Customer
         var customer = new Customer();
         customer.name = name;
         customer.id = id;
-        DataBaseHandler.InsertCustomer(customer);
+        DataBaseHandler.InsertCustomerdata(customer);
         return customer;
     }
   

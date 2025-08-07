@@ -3,29 +3,44 @@ using Microsoft.Data.Sqlite;
 
 public class DataBaseHandler
 {
-    // public static void InitializeDB()
-    // {
-    //     string dbPath = "/Volumes/Worksapce/C#Project/Datastructure/mydb.db";
-    //     if (File.Exists(dbPath))
-    //     {
-    //         File.Delete(dbPath);
-    //     }
-    // }
-     public static void InsertCustomer(Customer customer)
+    public static void InsertCustomerId(int id )
     {
-        var connectionString = "Data Source=/Volumes/Worksapce/C#Project/Datastructure/mydb.db";
-        using var connection = new SqliteConnection(connectionString);
-        connection.Open();
+        var connectionString = Program.DatabasePath;
+        try
+        {
+            using var connection = new SqliteConnection(connectionString);
+            connection.Open();
 
-        var command = connection.CreateCommand();
-        command.CommandText = "INSERT INTO Customer (Id, Name) VALUES ($id, $name)";
-        command.Parameters.AddWithValue("$id", customer.id);
-        command.Parameters.AddWithValue("$name", customer.name);
-        command.ExecuteNonQuery();
+            var command = connection.CreateCommand();
+            command.CommandText = "INSERT INTO Customer (Id) VALUES ($id)";
+            command.Parameters.AddWithValue("$id",id);
+            command.ExecuteNonQuery();
+        }
+        catch (SqliteException ex) when (ex.SqliteErrorCode == 19)
+        {
+            Console.WriteLine($"Duplicate ID error: A customer with ID {id} already exists.");
+            Program.AddCustomer();
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error inserting customer: {ex.Message}");
+        }
+    }
+    public static void InsertCustomerdata(Customer customer)
+    {
+        var connectionString = Program.DatabasePath;
+            using var connection = new SqliteConnection(connectionString);
+            connection.Open();
+
+            var command = connection.CreateCommand();
+            command.CommandText = command.CommandText = "UPDATE Customer SET Name = $name WHERE Id = $id";;
+            command.Parameters.AddWithValue("$id", customer.id);
+            command.Parameters.AddWithValue("$name", customer.name);
+            command.ExecuteNonQuery();
     }
     public static void InsertOrders(int customerId, List<orders> ordersList)
     {
-        var connectionString = "Data Source=/Volumes/Worksapce/C#Project/Datastructure/mydb.db";
+        var connectionString = Program.DatabasePath;
         using var connection = new SqliteConnection(connectionString);
         connection.Open();
 
@@ -42,7 +57,7 @@ public class DataBaseHandler
 
     public static void CreateDatabaseAndTable()
     {
-        using var connection = new SqliteConnection("Data Source=/Volumes/Worksapce/C#Project/Datastructure/mydb.db");
+        using var connection = new SqliteConnection(Program.DatabasePath);
         connection.Open();
 
         var createCustomerCmd = connection.CreateCommand();
@@ -50,13 +65,13 @@ public class DataBaseHandler
         createCustomerCmd.ExecuteNonQuery();
 
         var createOrdersCmd = connection.CreateCommand();
-        createOrdersCmd.CommandText = "CREATE TABLE IF NOT EXISTS Orders (Id INTEGER PRIMARY KEY, Name TEXT, CustomerId INTEGER, FOREIGN KEY(CustomerId) REFERENCES Customer(Id))";
+        createOrdersCmd.CommandText = "CREATE TABLE IF NOT EXISTS Orders (Id INTEGER, Name TEXT, CustomerId INTEGER, FOREIGN KEY(CustomerId) REFERENCES Customer(Id))";
         createOrdersCmd.ExecuteNonQuery();
     }
     public static List<Customer> GetCustomersWithOrders()
     {
         var customers = new List<Customer>();
-        var connectionString = "Data Source=/Volumes/Worksapce/C#Project/Datastructure/mydb.db";
+        var connectionString = Program.DatabasePath;
         using var connection = new SqliteConnection(connectionString);
         connection.Open();
 
@@ -94,7 +109,7 @@ public class DataBaseHandler
     }
     public static Customer? GetCustomerWithOrdersById(int id)
     {
-        var connectionString = "Data Source=/Volumes/Worksapce/C#Project/Datastructure/mydb.db";
+        var connectionString = Program.DatabasePath;
         using var connection = new SqliteConnection(connectionString);
         connection.Open();
 

@@ -1,7 +1,9 @@
+using System.Reflection.Metadata;
 using Datastructure;
 
 public class Program
 {
+    public const String  DatabasePath = "Data Source=/Volumes/Worksapce/C#Project/Datastructure/mydb.db";
     public static void Main(string[] args)
     {
       Initialize();
@@ -18,49 +20,50 @@ public class Program
                           "6.Delete Customer\n" +
                           "7.Delete order\n"+
                           "8.EXIT");;
-        String choice = Console.ReadLine();
+        int  choice = int.Parse(Console.ReadLine());
         switch (choice)
         {
-            case "1":AddCustomer();
+            case 1:AddCustomer();
                 break;
-            case "2":AddOrdersToCustomer();
+            case 2:AddOrdersToCustomer();
                 break;
-            case "3":GetAllCustomersWithOrders();
+            case 3:GetAllCustomersWithOrders();
                 break;
-            case "4":GetCustomerWithOrdersById();
+            case 4:GetCustomerWithOrdersById();
                 break;
-            case "5":GetAllCustomers();
+            case 5:GetAllCustomers();
                 break;
-            case "6":DeleteCustomer();
+            case 6:DeleteCustomer();
                 break;
-            case "7":DeleteOrder();
+            case 7:DeleteOrder();
                 break;
-            case "8":Console.WriteLine("Exiting...");
+            case 8:Console.WriteLine("Exiting...");
                 return;
             default:
                 Console.WriteLine("Invalid choice, please try again.");
+                MenuScreen();
                 break;
         }
     }
 
-    private static void DeleteCustomer()
+    public static void DeleteCustomer()
     {
         
     }
 
-    private static void GetAllCustomers()
+    public static void GetAllCustomers()
     {
     }
 
-    private static void DeleteOrder()
+    public static void DeleteOrder()
     {
     }
 
-    private static void GetCustomerWithOrdersById()
+    public static void GetCustomerWithOrdersById()
     {
     }
 
-    private static void GetAllCustomersWithOrders()
+    public static void GetAllCustomersWithOrders()
     {
         var customersWithOrders = DataBaseHandler.GetCustomersWithOrders();
         foreach (var cdata in customersWithOrders)
@@ -74,7 +77,7 @@ public class Program
         MenuScreen();
     }
 
-    private static void AddOrdersToCustomer()
+    public static void AddOrdersToCustomer()
     {
         Console.WriteLine("Enter id of Customer {i}:");
      var id = int.Parse(Console.ReadLine() ?? "0");
@@ -94,10 +97,11 @@ public class Program
         MenuScreen();
     }
 
-    private static void AddCustomer()
+    public static void AddCustomer()
     {
         Console.WriteLine("Enter id of Customer {i}:");
         var id = int.Parse(Console.ReadLine() ?? "0");
+        DataBaseHandler.InsertCustomerId(id);
         Console.WriteLine("Enter Name of Customer {i}:");
         var name = Console.ReadLine();
         var customer = Customer.Parse(id, name);
@@ -120,35 +124,3 @@ public class Program
         DataBaseHandler.CreateDatabaseAndTable();
     }
 }
-
-// Console.WriteLine("Enter the number of customers:");
-// int customerCount = int.Parse(Console.ReadLine() ?? "0");
-//
-// for (int i = 0; i < customerCount; i++)
-// {
-//     Console.WriteLine("Enter id of Customer {i}:");
-//     var id = int.Parse(Console.ReadLine() ?? "0");
-//     Console.WriteLine("Enter Name of Customer {i}:");
-//     var name = Console.ReadLine();
-//     var customer = Customer.Parse(id, name);
-//     Console.WriteLine("Enter the number of orders for this customer:");
-//     int orderCount = int.Parse(Console.ReadLine() ?? "0");
-//     for (int j = 0; j < orderCount; j++)
-//     {
-//         Console.WriteLine("Enter id  of order {i}:");
-//         var orderid = int.Parse(Console.ReadLine() ?? "0");
-//         Console.WriteLine("Enter Name of order {i}:");
-//         var ordername = Console.ReadLine();
-//         customer.order.Add(orders.Parse(orderid, ordername));
-//     }
-//     DataBaseHandler.InsertOrders(customer.id,customer.order);
-// }
-// var customersWithOrders = DataBaseHandler.GetCustomersWithOrders();
-// foreach (var cdata in customersWithOrders)
-// {
-//     Console.WriteLine($"Customer ID: {cdata.id}, Name: {cdata.name}");
-//     foreach (var order in cdata.order)
-//     {
-//         Console.WriteLine($"  Order ID: {order.id}, Name: {order.name}");
-//     }
-// }
