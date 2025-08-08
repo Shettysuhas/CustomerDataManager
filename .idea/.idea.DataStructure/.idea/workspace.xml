@@ -7,23 +7,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0f1e50d8-5dcb-42de-ad4d-83ada4152e19" name="Changes" comment="">
+    <list default="true" id="0f1e50d8-5dcb-42de-ad4d-83ada4152e19" name="Changes" comment="Update:Implemented currnet 7 properties with error handling and type conversion handeling.">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.DataStructure/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.DataStructure/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DataBaseHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DataBaseHandler.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Program.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bin/Debug/net9.0/Datastructure.dll" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Debug/net9.0/Datastructure.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bin/Debug/net9.0/Datastructure.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Debug/net9.0/Datastructure.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mydb.db" beforeDir="false" afterPath="$PROJECT_DIR$/mydb.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Datastructure.csproj.nuget.g.props" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Datastructure.csproj.nuget.g.props" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydb.db" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/obj/Debug/net9.0/Datastructure.AssemblyInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net9.0/Datastructure.AssemblyInfo.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/obj/Debug/net9.0/Datastructure.AssemblyInfoInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net9.0/Datastructure.AssemblyInfoInputs.cache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/obj/Debug/net9.0/Datastructure.dll" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net9.0/Datastructure.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/obj/Debug/net9.0/Datastructure.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net9.0/Datastructure.pdb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/obj/Debug/net9.0/ref/Datastructure.dll" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net9.0/ref/Datastructure.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/obj/Debug/net9.0/refint/Datastructure.dll" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net9.0/refint/Datastructure.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/project.packagespec.json" beforeDir="false" afterPath="$PROJECT_DIR$/obj/project.packagespec.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/rider.project.model.nuget.info" beforeDir="false" afterPath="$PROJECT_DIR$/obj/rider.project.model.nuget.info" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/rider.project.restore.info" beforeDir="false" afterPath="$PROJECT_DIR$/obj/rider.project.restore.info" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/orders.cs" beforeDir="false" afterPath="$PROJECT_DIR$/orders.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,6 +30,7 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 3
 }</component>
@@ -85,15 +83,38 @@
       <updated>1746695765957</updated>
       <workItem from="1746695768117" duration="170000" />
       <workItem from="1746696248645" duration="305000" />
-      <workItem from="1754634492911" duration="8351000" />
+      <workItem from="1754634492911" duration="19080000" />
     </task>
+    <task id="LOCAL-00001" summary="Update:Implemented currnet 7 properties with error handling and type conversion handeling.">
+      <option name="closed" value="true" />
+      <created>1754643804183</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1754643804183</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="UnityCheckinConfiguration" checkUnsavedScenes="true" />
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+    <MESSAGE value="Update:Implemented currnet 7 properties with error handling and type conversion handeling." />
+    <option name="LAST_COMMIT_MESSAGE" value="Update:Implemented currnet 7 properties with error handling and type conversion handeling." />
   </component>
 </project>

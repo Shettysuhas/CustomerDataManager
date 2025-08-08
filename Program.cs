@@ -19,7 +19,10 @@ public class Program
                           "5.Get All Customers\n" +
                           "6.Delete Customer\n" +
                           "7.Delete order\n"+
-                          "8.EXIT");;
+                          "8.Update Customer Name\n" +
+                          "9.Show All Orders\n" +
+                          "10.Edit Order\n" +
+                          "11.EXIT");;
         int choice;
         while (true)
         {
@@ -45,7 +48,13 @@ public class Program
                 break;
             case 7:DeleteOrder();
                 break;
-            case 8:Console.WriteLine("Exiting...");
+            case 8:UpdateCustomerName();
+                break;
+            case 9:ShowAllOrders(true);
+                break;
+            case 10:EditOrder();
+                break;
+            case 11:Console.WriteLine("Exiting...");
                 return;
             default:
                 Console.WriteLine("Invalid choice, please try again.");
@@ -53,7 +62,120 @@ public class Program
                 break;
         }
     }
-    
+
+    private static void EditOrder()
+    {
+        ShowAllOrders(false);
+        Console.WriteLine("Enter OrderNo:");
+        int orderid;
+        while (true)
+        {
+            var input = Console.ReadLine();
+            if (int.TryParse(input, out orderid))
+            {
+                if (DataBaseHandler.OrderExists(orderid))
+                    break;
+                else
+                {
+                    Console.WriteLine($"Order with ID {orderid} does not exist. Please enter a valid order ID.");
+                    continue;
+                }
+            }
+            Console.WriteLine("Invalid input. Please enter a valid integer.");
+        }
+        Console.WriteLine("Enter new name for Order {i}:");
+        Console.WriteLine("if you want to skip editing the name, just press Enter.");
+        String? newName = null; 
+        newName=Console.ReadLine();
+        if (string.IsNullOrWhiteSpace(newName))
+        {
+            newName = null;
+        }
+        Console.WriteLine("enter new id for Order {i}:");
+        int? id = null;
+        Console.WriteLine("if you want to skip editing the id, just press Enter.");
+        while (true)
+        {
+            var input = Console.ReadLine();
+            int tempId;
+            if(int.TryParse(input, out tempId))
+            {
+                if (tempId > 0)
+                {
+                    id = tempId;
+                    break;
+                }
+                else
+                {
+                    Console.WriteLine("ID must be a positive integer. Please enter a valid ID.");
+                    continue;
+                }
+            }
+            else if (string.IsNullOrWhiteSpace(input))
+            {
+                break;
+            }
+            else
+            {
+                Console.WriteLine("Invalid input. Please enter a valid integer or press Enter to skip.");
+            }
+            
+        }
+        DataBaseHandler.EditOrderDetails(orderid,id, newName);
+        Console.WriteLine("Order updated successfully.");
+        MenuScreen();
+        
+    }
+
+    private static void ShowAllOrders(bool menuScreen)
+    {
+         var ordersList = DataBaseHandler.DisplayAllOrdersList();
+         if (ordersList.Count == 0)
+         {
+             Console.WriteLine("No orders found.");
+         }
+         else
+         {
+             foreach (var order in ordersList)
+             {
+                 Console.WriteLine($"Order Number:{order.orderNumber}, Order ID: {order.id}, Name: {order.name}");
+             }
+         }
+         if (menuScreen)
+         { 
+             MenuScreen();
+         }
+    }
+
+    private static void UpdateCustomerName()
+    {
+        int customerid;
+        while (true)
+        {
+            Console.WriteLine("Enter id of Customer {i}:");
+            var input = Console.ReadLine();
+            if (int.TryParse(input, out customerid))
+                if (DataBaseHandler.CheckIfCustomerExists(customerid))
+                    break;
+                else
+                {
+                    Console.WriteLine($"Customer with ID {customerid} does not exist. Please enter a valid customer ID.");
+                    continue;
+                }
+            Console.WriteLine("Invalid input. Please enter a valid integer.");
+        }
+        Console.WriteLine("Enter new name for Customer {i}:");
+        var newName = Console.ReadLine();
+        if (string.IsNullOrWhiteSpace(newName))
+        {
+            Console.WriteLine("Name cannot be empty. Please enter a valid name.");
+            UpdateCustomerName();
+            return;
+        }
+        DataBaseHandler.UpdateCustomerName(customerid, newName);
+        MenuScreen();
+    }
+
     public static void DeleteOrder()
     {
         int customerid;
@@ -170,7 +292,7 @@ public class Program
         MenuScreen();
     }
 
-    public static void AddOrdersToCustomer()
+    public static void AddOrdersToCustomer() 
     {
         int id;
         while (true)
