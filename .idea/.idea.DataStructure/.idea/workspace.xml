@@ -7,20 +7,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0f1e50d8-5dcb-42de-ad4d-83ada4152e19" name="Changes" comment="Update:Implemented currnet 7 properties with error handling and type conversion handeling.">
+    <list default="true" id="0f1e50d8-5dcb-42de-ad4d-83ada4152e19" name="Changes" comment="Update:added new features">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.DataStructure/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.DataStructure/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DataBaseHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DataBaseHandler.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Program.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bin/Debug/net9.0/Datastructure.dll" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Debug/net9.0/Datastructure.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bin/Debug/net9.0/Datastructure.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Debug/net9.0/Datastructure.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mydb.db" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/obj/Debug/net9.0/Datastructure.AssemblyInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net9.0/Datastructure.AssemblyInfo.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/obj/Debug/net9.0/Datastructure.AssemblyInfoInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net9.0/Datastructure.AssemblyInfoInputs.cache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/obj/Debug/net9.0/Datastructure.dll" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net9.0/Datastructure.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/obj/Debug/net9.0/Datastructure.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net9.0/Datastructure.pdb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/obj/Debug/net9.0/ref/Datastructure.dll" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net9.0/ref/Datastructure.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/obj/Debug/net9.0/refint/Datastructure.dll" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net9.0/refint/Datastructure.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/orders.cs" beforeDir="false" afterPath="$PROJECT_DIR$/orders.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -83,7 +81,7 @@
       <updated>1746695765957</updated>
       <workItem from="1746695768117" duration="170000" />
       <workItem from="1746696248645" duration="305000" />
-      <workItem from="1754634492911" duration="19080000" />
+      <workItem from="1754634492911" duration="20824000" />
     </task>
     <task id="LOCAL-00001" summary="Update:Implemented currnet 7 properties with error handling and type conversion handeling.">
       <option name="closed" value="true" />
@@ -93,7 +91,15 @@
       <option name="project" value="LOCAL" />
       <updated>1754643804183</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Update:added new features">
+      <option name="closed" value="true" />
+      <created>1754659505163</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1754659505163</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -115,6 +121,7 @@
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
     <MESSAGE value="Update:Implemented currnet 7 properties with error handling and type conversion handeling." />
-    <option name="LAST_COMMIT_MESSAGE" value="Update:Implemented currnet 7 properties with error handling and type conversion handeling." />
+    <MESSAGE value="Update:added new features" />
+    <option name="LAST_COMMIT_MESSAGE" value="Update:added new features" />
   </component>
 </project>

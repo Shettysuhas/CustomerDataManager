@@ -326,11 +326,53 @@ public class DataBaseHandler
 
         command.ExecuteNonQuery();
     }
+
+    public static List<Customer> SearchCustomerByName(string name)
+    {
+        var customers = new List<Customer>();
+        var connectionString = Program.DatabasePath;
+        using var connection = new SqliteConnection(connectionString);
+        connection.Open();
+
+        var command = connection.CreateCommand();
+        command.CommandText = "SELECT Id, Name FROM Customer WHERE Name LIKE $name";
+        command.Parameters.AddWithValue("$name", "%" + name + "%");
+
+        using var reader = command.ExecuteReader();
+        while (reader.Read())
+        {
+            var customer = new Customer
+            {
+                id = reader.GetInt32(0),
+                name = reader.GetString(1),
+                order = new List<orders>()
+            };
+            customers.Add(customer);
+        }
+
+        foreach (var customer in customers)
+        {
+            var orderCmd = connection.CreateCommand();
+            orderCmd.CommandText = "SELECT Id, Name FROM Orders WHERE CustomerId = $customerId";
+            orderCmd.Parameters.AddWithValue("$customerId", customer.id);
+            using var orderReader = orderCmd.ExecuteReader();
+            while (orderReader.Read())
+            {
+                customer.order.Add(new orders
+                {
+                    id = orderReader.GetInt32(0),
+                    name = orderReader.GetString(1)
+                });
+            }
+        }
+
+        return customers;
+    }
     
 }
-//     Update Customer Details: Allow updating a customer's name or other info. do
-//     Update Order Details: Allow updating an order's name or other info.
-//     Search Customers by Name: Find customers using partial or full name matches.
+//     Update Customer Details: Allow updating a customer's name or other info. done
+//     Update Order Details: Allow updating an order's name or other info.done
+//     Search Customers by Name: Find customers using partial or full name matches.done
 //     List Orders for a Customer: List all orders for a specific customer.
 //     Prevent Duplicate Orders: Check for duplicate order IDs before inserting.
 //     Export Data: Export customers and orders to a CSV or JSON file.

@@ -22,7 +22,8 @@ public class Program
                           "8.Update Customer Name\n" +
                           "9.Show All Orders\n" +
                           "10.Edit Order\n" +
-                          "11.EXIT");;
+                          "11.Search Customer by Name\n" +
+                          "12.EXIT");;
         int choice;
         while (true)
         {
@@ -54,13 +55,52 @@ public class Program
                 break;
             case 10:EditOrder();
                 break;
-            case 11:Console.WriteLine("Exiting...");
+            case 11:SearchCustomer();
+                break;
+            case 12:Console.WriteLine("Exiting...");
                 return;
             default:
                 Console.WriteLine("Invalid choice, please try again.");
                 MenuScreen();
                 break;
         }
+    }
+
+    private static void SearchCustomer()
+    {
+       Console.WriteLine("Enter the name of the customer to search:");
+       string name;
+       while (true)
+       {
+           name = Console.ReadLine();
+           if (string.IsNullOrWhiteSpace(name))
+           {
+                Console.WriteLine("Name cannot be empty. Please enter a valid name.");
+                continue;
+           }
+           else
+           {
+               break;
+           }
+       }  
+         var customers = DataBaseHandler.SearchCustomerByName(name);
+            if (customers.Count == 0)
+            {
+                Console.WriteLine($"No customers found with the name '{name}'.");
+            }
+            else
+            {
+                Console.WriteLine($"Customers found with the name '{name}':");
+                foreach (var customer in customers)
+                {
+                    Console.WriteLine($"Customer ID: {customer.id}, Name: {customer.name}");
+                    foreach (var order in customer.order)
+                    {
+                        Console.WriteLine($"  Order ID: {order.id}, Name: {order.name}");
+                    }
+                }
+            }
+            MenuScreen();
     }
 
     private static void EditOrder()
@@ -297,7 +337,7 @@ public class Program
         int id;
         while (true)
         {
-            Console.WriteLine("Enter id of Customer {i}:");
+            Console.WriteLine("Enter id of Customer:");
             var input = Console.ReadLine();
             if (int.TryParse(input, out id))
                 break;
@@ -318,13 +358,13 @@ public class Program
          int orderid;
          while (true)
          {
-             Console.WriteLine("Enter id of order {i}:");
+             Console.WriteLine("\nEnter id of order:");
              var input = Console.ReadLine();
              if (int.TryParse(input, out orderid))
                  break;
              Console.WriteLine("Invalid input. Please enter a valid integer.");
          }
-         Console.WriteLine("Enter Name of order {i}:");
+         Console.WriteLine($"Enter Name of order id {orderid}:");
          var ordername = Console.ReadLine();
          var order = orders.Parse(orderid, ordername);
          ordersList.Add(order);
@@ -350,7 +390,15 @@ public class Program
         var name = Console.ReadLine();
         var customer = Customer.Parse(id, name);
         Console.WriteLine("Enter the number of orders for this customer:");
-        int orderCount = int.Parse(Console.ReadLine() ?? "0");
+        int orderCount;
+        while (true)
+        {
+            Console.WriteLine("Enter id of Customer {i}:");
+            var input = Console.ReadLine();
+            if (int.TryParse(input, out orderCount))
+                break;
+            Console.WriteLine("Invalid input. Please enter a valid integer.");
+        }
         for (int j = 0; j < orderCount; j++)
         {
             Console.WriteLine("Enter id  of order {i}:");
