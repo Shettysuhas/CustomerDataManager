@@ -107,7 +107,26 @@ public class DataBaseHandler
 
         return customers;
     }
-    public static Customer? GetCustomerWithOrdersById(int id)
+    public static List<string> CustomerNames()
+    {
+        var connectionString = Program.DatabasePath;
+        using var connection = new SqliteConnection(connectionString);
+        connection.Open();
+        var command = connection.CreateCommand();
+        command.CommandText="SELECT Name FROM Customer";
+        using var reader = command.ExecuteReader();
+        if (!reader.Read())
+            return null;
+        var customerNames = new List<string>();
+        while (reader.Read())
+        {
+            customerNames.Add(reader.GetString(0));
+            
+        }
+
+        return customerNames;
+    }
+    public static Customer GetCustomerWithOrdersById(int id)
     {
         var connectionString = Program.DatabasePath;
         using var connection = new SqliteConnection(connectionString);
@@ -143,5 +162,83 @@ public class DataBaseHandler
 
         return customer;
     }
-    
+
+    public static void DeleteCustomer(int id)
+    {
+        var connectionString = Program.DatabasePath;
+        using var connection = new SqliteConnection(connectionString);
+        connection.Open();
+        var orderdeleteCmd = connection.CreateCommand();
+        orderdeleteCmd.CommandText = "DELETE FROM Orders WHERE CustomerId = $id";
+        orderdeleteCmd.Parameters.AddWithValue("$id", id);
+        try
+        {
+            orderdeleteCmd.ExecuteNonQuery();
+        }
+        catch (SqliteException ex)
+        {
+            Console.WriteLine($"Error deleting orders for customer ID {id}: {ex.Message}");
+        }
+        var command = connection.CreateCommand();
+        command.CommandText = "DELETE FROM Customer WHERE Id = $id";
+        command.Parameters.AddWithValue("$id", id);
+        
+        try
+        {
+            command.ExecuteNonQuery();
+            Console.WriteLine($"Customer with ID {id} deleted successfully.");
+        }
+        catch (SqliteException ex)
+        {
+            Console.WriteLine($"Error deleting customer: {ex.Message}");
+          
+        }
+        
+    }
+
+    public static void DeleteOrder(int customerid, int id)
+    {
+        var connectionString = Program.DatabasePath;
+        using var connection = new SqliteConnection(connectionString);
+        connection.Open();  
+        var orderdeleteCmd = connection.CreateCommand();
+        orderdeleteCmd.CommandText = "DELETE FROM Orders WHERE CustomerId = $customerid AND Id = $id";
+        orderdeleteCmd.Parameters.AddWithValue("$customerid", customerid);
+        orderdeleteCmd.Parameters.AddWithValue("$id", id);
+        
+        try
+        {
+            orderdeleteCmd.ExecuteNonQuery();
+            Console.WriteLine($"Order with ID {id} for customer ID {customerid} deleted successfully.");
+        }
+        catch (SqliteException ex)
+        {
+            Console.WriteLine($"Error deleting orders for customer ID {id}: {ex.Message}");
+        }
+
+    }
+    public static bool CheckIfCustomerExists(int id)
+    {
+        var connectionString = Program.DatabasePath;
+        using var connection = new SqliteConnection(connectionString);
+        connection.Open();
+        var command = connection.CreateCommand();
+        command.CommandText = "SELECT EXISTS(SELECT 1 FROM Customer WHERE Id = $id)";
+        command.Parameters.AddWithValue("$id", id);
+        var result = command.ExecuteScalar();
+        return Convert.ToInt64(result) == 1;
+    }
+    public static bool CheckIfCustomerWithOrderExists(int customerid,int id)
+    {
+        var connectionString = Program.DatabasePath;
+        using var connection = new SqliteConnection(connectionString);
+        connection.Open();
+        var command = connection.CreateCommand();
+        command.CommandText = "SELECT EXISTS(SELECT 1 FROM Orders WHERE  CustomerId = $customerid AND Id = $id)";
+        command.Parameters.AddWithValue("$customerid", customerid);
+        command.Parameters.AddWithValue("$id", id);
+        var result = command.ExecuteScalar();
+        return Convert.ToInt64(result) == 1;
+    }
+
 }
