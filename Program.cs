@@ -3,7 +3,7 @@ using Datastructure;
 
 public class Program
 {
-    public const String  DatabasePath = "Data Source=/Volumes/Worksapce/C#Project/Datastructure/mydb.db";
+    public const String  DatabasePath = "Data Source=C:\\Unity Projects\\Datastructure\\mydb.db";
     public static void Main(string[] args)
     {
       Initialize();
